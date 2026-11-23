@@ -1,6 +1,7 @@
 
 param (
-    [string]$RutaPHP = 'php'
+    [string]$RutaPHP = 'php',
+    [switch]$IniciarServidor
 )
 
 $archivoOrigen = Join-Path $PSScriptRoot 'origen\index.php'
@@ -17,4 +18,6 @@ Copy-Item $archivoOrigen $archivoDestino -Force -ErrorAction Stop
 
 Write-Host "Versión publicada en el ambiente de pruebas."
 
-& 'C:\xampp\php\php.exe' -S localhost:8000 -t .\pruebas
+if ($IniciarServidor) {
+    & $RutaPHP -S localhost:8000 -t (Join-Path $PSScriptRoot 'pruebas')
+}
