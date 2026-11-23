@@ -4,7 +4,7 @@ name: Comprobar script y preparar version
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 permissions:
